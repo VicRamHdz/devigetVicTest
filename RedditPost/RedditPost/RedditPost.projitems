@@ -27,6 +27,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Services\TopService.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Base\ServiceBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Base\ResponseResult.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
