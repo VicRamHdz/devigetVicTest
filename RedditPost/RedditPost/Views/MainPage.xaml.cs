@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RedditPost.Base;
 using RedditPost.ViewModels;
 using Xamarin.Forms;
 
@@ -18,6 +19,16 @@ namespace RedditPost.Views
         {
             InitializeComponent();
             this.BindingContext = new MainPageViewModel();
+        }
+
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            MessagingCenter.Subscribe<string, string>(this, "DisplayError", async (title, message) =>
+            {
+                await DisplayAlert(title, message, "OK");
+            });
         }
     }
 }

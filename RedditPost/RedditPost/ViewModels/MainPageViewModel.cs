@@ -19,6 +19,19 @@ namespace RedditPost.ViewModels
 
         public MainPageViewModel()
         {
+            LoadData();
+        }
+
+        private async void LoadData()
+        {
+            try
+            {
+
+            }
+            catch (Exception ex)
+            {
+                await DisplayError(ex);
+            }
         }
     }
 }
