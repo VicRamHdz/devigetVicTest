@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using RedditPost.ViewModels;
 using Xamarin.Forms;
 
 namespace RedditPost.Views
@@ -16,6 +17,7 @@ namespace RedditPost.Views
         public MainPage()
         {
             InitializeComponent();
+            this.BindingContext = new MainPageViewModel();
         }
     }
 }

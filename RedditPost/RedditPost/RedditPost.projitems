@@ -24,11 +24,15 @@
     <Compile Include="$(MSBuildThisFileDirectory)Base\ModelBase.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)ViewModels\MainPageViewModel.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Base\ViewModelBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Services\TopService.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Base\ServiceBase.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Constants.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="$(MSBuildThisFileDirectory)Views\" />
     <Folder Include="$(MSBuildThisFileDirectory)Models\" />
     <Folder Include="$(MSBuildThisFileDirectory)ViewModels\" />
     <Folder Include="$(MSBuildThisFileDirectory)Base\" />
+    <Folder Include="$(MSBuildThisFileDirectory)Services\" />
   </ItemGroup>
 </Project>
