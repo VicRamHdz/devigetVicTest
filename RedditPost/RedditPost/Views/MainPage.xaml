@@ -3,10 +3,30 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:RedditPost" 
              x:Class="RedditPost.Views.MainPage">
-    <StackLayout>
-        <!-- Place new controls here -->
-        <Label Text="Welcome to Xamarin.Forms!" 
-               HorizontalOptions="Center" 
-               VerticalOptions="CenterAndExpand" />
-    </StackLayout>
+    <Grid x:Name="mainGrid">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="30*"/>
+            <ColumnDefinition Width="70*"/>
+        </Grid.ColumnDefinitions>
+        <StackLayout Orientation="Vertical" Grid.Column="0" Spacing="0">
+            <Label Text="Reddit Posts" BackgroundColor="{StaticResource HeaderBackgroundColor}"
+                   FontSize="22" HeightRequest="80" 
+                   HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
+            <ListView ItemsSource="{Binding Item.data.children}" RowHeight="150" HasUnevenRows="true">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Vertical" Spacing="5">
+                                <Label Text="{Binding data.author}" FontSize="13" FontAttributes="Bold"/>
+                                <Label Text="{Binding data.title}" FontSize="10"/>
+                            </StackLayout>
+                        </ViewCell>    
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </StackLayout>
+        <StackLayout Orientation="Vertical" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}">
+            <Label Text="Details here!"/>
+        </StackLayout>
+    </Grid>
 </ContentPage>

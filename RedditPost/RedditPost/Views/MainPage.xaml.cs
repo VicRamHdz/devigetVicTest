@@ -30,5 +30,21 @@ namespace RedditPost.Views
                 await DisplayAlert(title, message, "OK");
             });
         }
+
+        protected override void OnSizeAllocated(double width, double height)
+        {
+            base.OnSizeAllocated(width, height);
+            if (Width > height) //landscape
+            {
+                this.mainGrid.Margin = new Thickness(0);
+            }
+            else //portrait
+            {
+                if (Device.RuntimePlatform == Device.iOS)
+                {
+                    this.mainGrid.Margin = new Thickness(0, 20, 0, 0);
+                }
+            }
+        }
     }
 }

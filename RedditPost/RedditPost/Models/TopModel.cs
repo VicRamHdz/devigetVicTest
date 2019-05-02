@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using RedditPost.Base;
 
 namespace RedditPost.Models
@@ -129,10 +130,19 @@ namespace RedditPost.Models
         public Data2 data { get; set; }
     }
 
-    public class Data
+    public class Data : ModelBase
     {
         public string modhash { get; set; }
-        public List<Child> children { get; set; }
+        private ObservableCollection<Child> _children;
+        public ObservableCollection<Child> children
+        {
+            get => _children;
+            set
+            {
+                _children = value;
+                OnPropertyChanged();
+            }
+        }
         public string after { get; set; }
         public object before { get; set; }
     }
