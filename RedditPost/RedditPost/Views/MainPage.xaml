@@ -3,12 +3,12 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:local="clr-namespace:RedditPost" 
              x:Class="RedditPost.Views.MainPage">
-    <Grid x:Name="mainGrid">
+    <Grid x:Name="mainGrid" ColumnSpacing="0">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="30*"/>
-            <ColumnDefinition Width="70*"/>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackLayout Orientation="Vertical" Grid.Column="0" Spacing="0">
+        <StackLayout Orientation="Vertical" Grid.Column="0" Spacing="0" x:Name="Menu" WidthRequest="120">
             <Label Text="Reddit Posts" BackgroundColor="{StaticResource HeaderBackgroundColor}"
                    FontSize="22" HeightRequest="80" 
                    HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
@@ -25,7 +25,8 @@
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-        <StackLayout Orientation="Vertical" Grid.Column="1" HorizontalOptions="FillAndExpand" VerticalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}">
+        <StackLayout x:Name="stcDetails" Orientation="Vertical" Grid.Column="1" HorizontalOptions="FillAndExpand" 
+                     VerticalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}">
             <Label Text="Details here!"/>
         </StackLayout>
     </Grid>
