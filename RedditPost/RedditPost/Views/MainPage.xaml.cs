@@ -99,6 +99,7 @@ namespace RedditPost.Views
             if (Width > height) //landscape
             {
                 this.mainGrid.Margin = new Thickness(0);
+                this.stcDetails.Margin = new Thickness(0);
                 if (!IsSwiping)
                     Menu.IsVisible = true;
             }
@@ -107,6 +108,7 @@ namespace RedditPost.Views
                 if (Device.RuntimePlatform == Device.iOS)
                 {
                     this.mainGrid.Margin = new Thickness(0, 20, 0, 0);
+                    this.stcDetails.Margin = new Thickness(0, 20, 0, 0);
                 }
                 if (!IsSwiping)
                     Menu.IsVisible = false;

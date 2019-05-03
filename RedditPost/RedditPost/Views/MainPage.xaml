@@ -2,6 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
+             x:Name="mainPage"
              xmlns:local="clr-namespace:RedditPost" 
              x:Class="RedditPost.Views.MainPage">
     <Grid x:Name="mainGrid" ColumnSpacing="0">
@@ -13,12 +14,12 @@
             <Label Text="Reddit Posts" BackgroundColor="{StaticResource HeaderBackgroundColor}"
                    FontSize="18" HeightRequest="80"  VerticalTextAlignment="Center" TextColor="White"
                    HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-            <ListView ItemsSource="{Binding Item.data.children}" 
+            <ListView ItemsSource="{Binding Item.data.children}"
                       RowHeight="150" HasUnevenRows="true" BackgroundColor="{StaticResource PrimaryBackgroundColor}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                           <StackLayout Orientation="Vertical" Spacing="5" Padding="5">
+                           <StackLayout Orientation="Vertical" Spacing="5" Padding="5" x:Name="Item">
                                 <Label TextColor="White"
                                        FontSize="12" FontAttributes="Bold">
                                     <Label.FormattedText>
@@ -48,7 +49,7 @@
                                         Source = "next.png"/>
                                 </Grid>
                                 <StackLayout Orientation="Horizontal" Spacing="10">
-                                    <ffimageloading:CachedImage HeightRequest="20" WidthRequest="20"
+                                    <ffimageloading:CachedImage HeightRequest="15" WidthRequest="20"
                                         DownsampleToViewSize="true" Aspect="Fill"
                                         Source = "dismiss.png"/>
                                     <Label Text="Dismiss Post" FontSize="12" TextColor="White"/>
@@ -62,15 +63,26 @@
                                     </Label.FormattedText>
                                 </Label>
                                 </StackLayout>
+                                <StackLayout.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding BindingContext.SelectItemCommand, Source={x:Reference mainPage}}"
+                                        CommandParameter="{Binding Source={x:Reference Item}, Path=BindingContext}" 
+                                        />
+                                </StackLayout.GestureRecognizers>
                             </StackLayout>
                         </ViewCell>    
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </StackLayout>
-        <StackLayout x:Name="stcDetails" Orientation="Vertical" Grid.Column="1" HorizontalOptions="FillAndExpand" 
-                     VerticalOptions="FillAndExpand" Spacing="0" BackgroundColor="{StaticResource LightBackgroundColor}">
-            <Label Text="Details here!"/>
+        <StackLayout x:Name="stcDetails" Orientation="Vertical" Grid.Column="1" HorizontalOptions="FillAndExpand" Padding="10"
+                     VerticalOptions="FillAndExpand" Spacing="20" BackgroundColor="{StaticResource LightBackgroundColor}">
+            <Label Text="{Binding selected.author}" TextColor="Black" HorizontalTextAlignment="Center" 
+                   HorizontalOptions="CenterAndExpand" FontSize="20"/>
+            <ffimageloading:CachedImage Grid.Column="0" HeightRequest="300" WidthRequest="250"
+                                        DownsampleToViewSize="true" Aspect="Fill" HorizontalOptions="Center"
+                                        Source = "{Binding selected.thumbnail}"/>
+            <Label Text="{Binding selected.title}" TextColor="Black" FontSize="15" HorizontalTextAlignment="Center"/>
         </StackLayout>
     </Grid>
 </ContentPage>

@@ -1,10 +1,13 @@
 ﻿using System;
 using System.IO;
 using System.Reflection;
+using System.Threading.Tasks;
+using System.Windows.Input;
 using Newtonsoft.Json;
 using RedditPost.Base;
 using RedditPost.Models;
 using RedditPost.Views;
+using Xamarin.Forms;
 
 namespace RedditPost.ViewModels
 {
@@ -21,8 +24,22 @@ namespace RedditPost.ViewModels
             }
         }
 
+        private Data2 _selected;
+        public Data2 selected
+        {
+            get => _selected;
+            set
+            {
+                _selected = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand SelectItemCommand { get; set; }
+
         public MainPageViewModel()
         {
+            SelectItemCommand = new Command((p) => OnSelectedItem(p as Child));
             LoadData();
         }
 
@@ -44,6 +61,11 @@ namespace RedditPost.ViewModels
             {
                 await DisplayError(ex);
             }
+        }
+
+        private void OnSelectedItem(Child item)
+        {
+            selected = item.data;
         }
     }
 }
