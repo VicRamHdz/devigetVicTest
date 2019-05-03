@@ -10,15 +10,28 @@
         </Grid.ColumnDefinitions>
         <StackLayout Orientation="Vertical" Grid.Column="0" Spacing="0" x:Name="Menu" WidthRequest="120">
             <Label Text="Reddit Posts" BackgroundColor="{StaticResource HeaderBackgroundColor}"
-                   FontSize="22" HeightRequest="80" 
+                   FontSize="18" HeightRequest="80"  VerticalTextAlignment="Center" TextColor="White"
                    HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
-            <ListView ItemsSource="{Binding Item.data.children}" RowHeight="150" HasUnevenRows="true">
+            <ListView ItemsSource="{Binding Item.data.children}" 
+                      RowHeight="150" HasUnevenRows="true" BackgroundColor="{StaticResource PrimaryBackgroundColor}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <StackLayout Orientation="Vertical" Spacing="5">
-                                <Label Text="{Binding data.author}" FontSize="13" FontAttributes="Bold"/>
-                                <Label Text="{Binding data.title}" FontSize="10"/>
+                                <Label TextColor="White"
+                                       FontSize="13" FontAttributes="Bold">
+                                    <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding data.author}" />
+                                        <Span Text="{Binding data.hoursago}"/>
+                                        <Span Text=" hours ago" />
+                                    </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                <Label Text="{Binding data.title}" TextColor="White"
+                                       FontSize="10"/>
+                                <Label Text="{Binding data.hoursago}" TextColor="White"
+                                       FontSize="10"/>
                             </StackLayout>
                         </ViewCell>    
                     </DataTemplate>
