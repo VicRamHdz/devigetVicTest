@@ -36,10 +36,14 @@ namespace RedditPost.ViewModels
         }
 
         public ICommand SelectItemCommand { get; set; }
+        public ICommand DismissItemCommand { get; set; }
+        public ICommand DismissAllCommand { get; set; }
 
         public MainPageViewModel()
         {
             SelectItemCommand = new Command((p) => OnSelectedItem(p as Child));
+            DismissItemCommand = new Command((p) => OnDismissItem(p as Child));
+            DismissAllCommand = new Command((p) => OnDismissAll());
             LoadData();
         }
 
@@ -66,6 +70,16 @@ namespace RedditPost.ViewModels
         private void OnSelectedItem(Child item)
         {
             selected = item.data;
+        }
+
+        private void OnDismissItem(Child item)
+        {
+            Item.data.children.Remove(item);
+        }
+
+        private void OnDismissAll()
+        {
+            Item.data.children.Clear();
         }
     }
 }
