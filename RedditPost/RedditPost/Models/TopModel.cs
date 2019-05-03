@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using RedditPost.Base;
 using RedditPost.Helpers;
+using Xamarin.Forms;
 
 namespace RedditPost.Models
 {
@@ -78,7 +79,7 @@ namespace RedditPost.Models
         public string type { get; set; }
     }
 
-    public class Data2
+    public class Data2 : ModelBase
     {
         public string domain { get; set; }
         public object banned_by { get; set; }
@@ -101,7 +102,16 @@ namespace RedditPost.Models
         public object approved_by { get; set; }
         public bool over_18 { get; set; }
         public bool hidden { get; set; }
-        public string thumbnail { get; set; }
+        private string _thumbnail;
+        public string thumbnail
+        {
+            get => _thumbnail;
+            set
+            {
+                _thumbnail = value;
+                OnPropertyChanged();
+            }
+        }
         public string subreddit_id { get; set; }
         public object edited { get; set; }
         public string link_flair_css_class { get; set; }
@@ -115,7 +125,17 @@ namespace RedditPost.Models
         public bool stickied { get; set; }
         public long created { get; set; }
         public double hoursago { get { return Math.Round((DateTime.Now - created_utc.ToDateTime()).TotalHours); } }
-        public string url { get; set; }
+        private string _url;
+        public string url
+        {
+            get => _url;
+            set
+            {
+                _url = value;
+                OnPropertyChanged();
+            }
+        }
+
         public object author_flair_text { get; set; }
         public string title { get; set; }
         public long created_utc { get; set; }

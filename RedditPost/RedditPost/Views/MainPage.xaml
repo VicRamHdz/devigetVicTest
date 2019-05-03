@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms" 
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
+             xmlns:ffimageloading="clr-namespace:FFImageLoading.Forms;assembly=FFImageLoading.Forms"
              xmlns:local="clr-namespace:RedditPost" 
              x:Class="RedditPost.Views.MainPage">
     <Grid x:Name="mainGrid" ColumnSpacing="0">
@@ -8,7 +9,7 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <StackLayout Orientation="Vertical" Grid.Column="0" Spacing="0" x:Name="Menu" WidthRequest="120">
+        <StackLayout Orientation="Vertical" Grid.Column="0" Spacing="0" x:Name="Menu" WidthRequest="200">
             <Label Text="Reddit Posts" BackgroundColor="{StaticResource HeaderBackgroundColor}"
                    FontSize="18" HeightRequest="80"  VerticalTextAlignment="Center" TextColor="White"
                    HorizontalOptions="FillAndExpand" HorizontalTextAlignment="Center"/>
@@ -17,21 +18,50 @@
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
-                            <StackLayout Orientation="Vertical" Spacing="5">
+                           <StackLayout Orientation="Vertical" Spacing="5" Padding="5">
                                 <Label TextColor="White"
-                                       FontSize="13" FontAttributes="Bold">
+                                       FontSize="12" FontAttributes="Bold">
                                     <Label.FormattedText>
                                     <FormattedString>
                                         <Span Text="{Binding data.author}" />
+                                        <Span Text=" " />
                                         <Span Text="{Binding data.hoursago}"/>
                                         <Span Text=" hours ago" />
                                     </FormattedString>
                                     </Label.FormattedText>
                                 </Label>
-                                <Label Text="{Binding data.title}" TextColor="White"
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="30*"/>
+                                        <ColumnDefinition Width="70*"/>
+                                        <ColumnDefinition Width="20"/>
+                                    </Grid.ColumnDefinitions>
+                                     <ffimageloading:CachedImage Grid.Column="0" HorizontalOptions="FillAndExpand"
+                                                                 VerticalOptions="FillAndExpand"
+                                        DownsampleToViewSize="true" Aspect="Fill"
+                                        Source = "{Binding data.thumbnail}"/>
+                                    <Label Text="{Binding data.title}" TextColor="White" Grid.Column="1"
                                        FontSize="10"/>
-                                <Label Text="{Binding data.hoursago}" TextColor="White"
-                                       FontSize="10"/>
+                                     <ffimageloading:CachedImage Grid.Column="2" HorizontalOptions="Center"
+                                                                 VerticalOptions="Center"
+                                        DownsampleToViewSize="true" Aspect="AspectFit"
+                                        Source = "next.png"/>
+                                </Grid>
+                                <StackLayout Orientation="Horizontal" Spacing="10">
+                                    <ffimageloading:CachedImage HeightRequest="20" WidthRequest="20"
+                                        DownsampleToViewSize="true" Aspect="Fill"
+                                        Source = "dismiss.png"/>
+                                    <Label Text="Dismiss Post" FontSize="12" TextColor="White"/>
+                                    <Label TextColor="White"
+                                       FontSize="12">
+                                    <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="{Binding data.num_comments}" />
+                                        <Span Text=" comments" />
+                                    </FormattedString>
+                                    </Label.FormattedText>
+                                </Label>
+                                </StackLayout>
                             </StackLayout>
                         </ViewCell>    
                     </DataTemplate>

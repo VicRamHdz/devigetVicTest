@@ -3,7 +3,7 @@
     <Application.Resources>
         <ResourceDictionary>
             <Color x:Key="PrimaryBackgroundColor">#000000</Color>
-            <Color x:Key="HeaderBackgroundColor">#4D4D4D</Color>
+            <Color x:Key="HeaderBackgroundColor">#3A3A3A</Color>
             <Color x:Key="LightBackgroundColor">#FFFFFF</Color>
         </ResourceDictionary>
     </Application.Resources>
